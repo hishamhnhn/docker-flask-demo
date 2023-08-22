@@ -1,29 +1,47 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('hishamkhalil')
+        DOCKERHUB_CREDENTIALS = credentials('hishamkhalil')
     }
     stages { 
-
         stage('Build docker image') {
             steps {  
                 sh 'docker build -t hishamkhalil/flaskapp:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
-            steps{
+            steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('push image') {
-            steps{
+            steps {
                 sh 'docker push hishamkhalil/flaskapp:$BUILD_NUMBER'
             }
         }
-}
-post {
+        stage('Remote Shell') {
+            steps {
+                script {
+                    // Define your remote server details
+                    def remoteServer = '18.232.79.173'
+                    def remoteUser = 'ubuntu'
+                    def remotePassword = '123456'
+                    
+                    // Command to execute remotely
+                    def remoteCommand = 'touch test.txt'
+                    
+                    // Execute the command on the remote server
+                    sh(script: """
+                        sshpass -p ${remotePassword} ssh ${remoteUser}@${remoteServer} '${remoteCommand}'
+                    """, returnStatus: true)
+                }
+            }
+        }
+    }
+    post {
         always {
             sh 'docker logout'
         }
     }
 }
+
