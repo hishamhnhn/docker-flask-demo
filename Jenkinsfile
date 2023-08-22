@@ -23,14 +23,10 @@ pipeline {
             steps {
                 script {
                     // Define your remote server details
-                    def remoteServer = '18.232.79.173'
+                    def remoteServer = '35.173.185.18'
                     def remoteUser = 'ubuntu'
                     def remotePassword = '123456'
-                    // Directory path to create on the remote server
-                    def remoteDirectory = '/home/ubuntu'
-            
-                    // Command to create the directory remotely
-                    def remoteCommand = "mkdir -p ${remoteDirectory}"
+                    
                     // Command to execute remotely
                     def remoteCommand = 'mkdir test'
                     
