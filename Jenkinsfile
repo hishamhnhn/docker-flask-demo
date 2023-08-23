@@ -23,12 +23,13 @@ pipeline {
             steps {
                 script {
                     // Define your remote server details
-                    def remoteServer = '35.173.185.18'
+                    def remoteServer = '75.101.186.40'
                     def remoteUser = 'ubuntu'
                     def remotePassword = '123456'
                     
                     // Command to execute remotely
-                    def remoteCommand = 'mkdir test'
+                    def remoteCommand = 'docker push hishamkhalil/flaskapp:tagname'
+'
                     
                     // Execute the command on the remote server
                     sh(script: """
