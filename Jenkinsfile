@@ -28,7 +28,7 @@ pipeline {
                     def remotePassword = '123456'
                     
                     // Command to execute remotely
-                    def remoteCommand = 'mkdir test'
+                    def remoteCommand = 'docker push hishamkhalil/flaskapp:tagname'
                     
                     // Execute the command on the remote server
                     sh(script: """
