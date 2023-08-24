@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Define your remote server details
-                    def remoteServer = '75.101.186.40'
+                    def remoteServer = '3.94.84.42'
                     def remoteUser = 'ubuntu'
                     def remotePassword = '123456'
                     
