@@ -34,6 +34,8 @@ pipeline {
                     sh(script: """
                         sshpass -p ${remotePassword} ssh ${remoteUser}@${remoteServer} '${remoteCommand}'
                     """, returnStatus: true)
+                    if (result != 0) {
+                         error "Remote command failed with exit code ${result}"
                 }
             }
         }
