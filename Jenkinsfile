@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('hishamkhalil')
+    DOCKERHUB_CREDENTIALS = credentials('hishamkhalil')
     }
     stages { 
         stage('Build docker image') {
@@ -28,8 +28,7 @@ pipeline {
                     def remotePassword = '123456'
                     
                     // Command to execute remotely
-                    def remoteCommand = 'docker push hishamkhalil/flaskapp:tagname'
-'
+                    def remoteCommand = 'mkdir test'
                     
                     // Execute the command on the remote server
                     sh(script: """
@@ -45,4 +44,3 @@ pipeline {
         }
     }
 }
-
