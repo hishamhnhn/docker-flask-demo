@@ -26,7 +26,11 @@ pipeline {
         }
         success {
         // Trigger the "free" build job
-            build 'free'
+            retry(3) {
+                build 'free'
+            }
         }
     }
 }
+
+    
