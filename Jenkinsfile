@@ -24,5 +24,9 @@ pipeline {
         always {
             sh 'docker logout'
         }
+        success {
+        // Trigger the "free" build job
+            build 'free'
+        }
     }
 }
