@@ -19,6 +19,11 @@ pipeline {
                 sh 'docker push hishamkhalil/flaskapp:$BUILD_NUMBER'
             }
         }
+        stage('Build free') {
+            steps { 
+                build 'free'
+            }
+        }
     }
     post {
         always {
