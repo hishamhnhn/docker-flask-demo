@@ -19,24 +19,6 @@ pipeline {
                 sh 'docker push hishamkhalil/flaskapp:$BUILD_NUMBER'
             }
         }
-        stage('Remote Shell') {
-            steps {
-                script {
-                    // Define your remote server details
-                    def remoteServer = '3.94.84.42'
-                    def remoteUser = 'ubuntu'
-                    def remotePassword = '123456'
-                    
-                    // Command to execute remotely
-                    def remoteCommand = 'mkdir test'
-                    
-                    // Execute the command on the remote server
-                    sh(script: """
-                        sshpass -p ${remotePassword} ssh ${remoteUser}@${remoteServer} '${remoteCommand}'
-                    """, returnStatus: true)
-                }
-            }
-        }
     }
     post {
         always {
