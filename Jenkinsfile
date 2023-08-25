@@ -18,19 +18,17 @@ pipeline {
             steps {
                 sh 'docker push hishamkhalil/flaskapp:$BUILD_NUMBER'
             }
+            post {
+                success {
+                    // Trigger the "free" build job
+                    build 'free'
+                }
+            }
         }
     }
     post {
         always {
             sh 'docker logout'
         }
-        success {
-        // Trigger the "free" build job
-            retry(3) {
-                build 'free'
-            }
-        }
     }
 }
-
-    
