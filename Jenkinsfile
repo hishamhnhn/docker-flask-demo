@@ -27,13 +27,4 @@ pipeline {
     }
 }
 
-pipeline {
-    agent any
-    stages {
-        stage('Build free') {
-            steps { 
-                // Define the build steps for the "free" job here
-            }
-        }
-    }
-}
+
