@@ -19,14 +19,6 @@ pipeline {
                 sh 'docker push hishamkhalil/flaskapp:$BUILD_NUMBER'
             }
         }
-        stage('Build free') {
-            when {
-                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-            }
-            steps { 
-                build 'free'
-            }
-        }
     }
     post {
         always {
@@ -35,3 +27,13 @@ pipeline {
     }
 }
 
+pipeline {
+    agent any
+    stages {
+        stage('Build free') {
+            steps { 
+                // Define the build steps for the "free" job here
+            }
+        }
+    }
+}
