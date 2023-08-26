@@ -20,6 +20,9 @@ pipeline {
             }
         }
         stage('Build free') {
+            when {
+                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+            }
             steps { 
                 build 'free'
             }
@@ -31,3 +34,4 @@ pipeline {
         }
     }
 }
+
